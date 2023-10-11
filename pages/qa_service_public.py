@@ -31,7 +31,6 @@ ES_VECTOR_INDEX = os.getenv('HOSTED_VECTOR_INDEX')
 PROJECT_ID = os.getenv('PROJECT_ID')
 REGION = os.getenv('REGION')
 VERTEX_AI_MODEL_ID = os.getenv('VERTEX_AI_MODEL')
-#ES_VECTOR_INDEX = os.getenv('ES_VECTOR_INDEX')
 vertexai.init(project=PROJECT_ID, location=REGION)
 
 # connect to es
@@ -61,22 +60,7 @@ vector_store = ElasticsearchStore(
 # Init retriever
 retriever = vector_store.as_retriever()
 
-# Init llm
-# llm = None
-# if st.session_state.llm_model == 'gpt-3.5-turbo-16k' or 'gpt4':
-#     llm = ChatOpenAI(
-#         model_name=st.session_state.llm_model,
-#         temperature=st.session_state.llm_temperature,
-#         openai_api_key=OPENAI_API_KEY)
-# elif st.session_state.llm_model == 'vertex-ai':
-#     llm = ChatVertexAI(
-#         model_name="text-bison@001",
-#         max_output_tokens=256,
-#         temperature=st.session_state.llm_temperature,
-#         top_p=0.8,
-#         top_k=40,
-#         verbose=True,
-#     )
+
 
 # Build prompt
 template = """
@@ -89,22 +73,8 @@ template = """
 Question: {question}
 Helpful Answer:"""
 
-refine_template = """The original question is as follows: {question}\nWe have provided an existing answer: {existing_answer}\nWe have the opportunity to refine the existing answer(only if needed) with some more context below.\n------------\n{context_str}\n------------\nGiven the new context, refine the original answer to better answer the question. If the context isn't useful, always return the original answer.
-Helpful Answer: """
-refine_prompt = PromptTemplate(input_variables=['question', 'existing_answer', 'context_str'], template=refine_template)
-
 QA_CHAIN_PROMPT = PromptTemplate.from_template(template)
-# Run chain
-# qa = RetrievalQA.from_chain_type(
-#     llm=llm,
-#     chain_type="stuff",
-#     retriever=retriever,
-#     return_source_documents=True,
-#     chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
-#     # chain_type_kwargs={
-#     #     "question_prompt": QA_CHAIN_PROMPT,
-#     #     "refine_prompt": refine_prompt}
-# )
+
 
 def init_qa_chain(llm_model, llm_temperature):
     llm = None
@@ -130,7 +100,7 @@ def init_qa_chain(llm_model, llm_temperature):
         chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
     )
 
-st.title("Service Public GPT Search Demo")
+st.title("Service Public QA Demo")
 
 # chat interface
 with st.container():
