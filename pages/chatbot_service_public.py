@@ -80,14 +80,12 @@ def init_chat_model(selected_model, llm_temp):
 
 class ContextChatbot:
     def __init__(self):
-        # self.openai_model = "gpt-3.5-turbo-16k"
-        # self.openai_model = st.session_state.llm_model
+        
         self.es = Elasticsearch(
             cloud_id=CLOUD_ID,
             basic_auth=(CLOUD_USERNAME, CLOUD_PASSWORD)
         )
         self.es.info()
-        # self.embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
         self.vector_store = ElasticsearchStore(
             es_cloud_id=CLOUD_ID,
             es_user=CLOUD_USERNAME,
@@ -117,8 +115,6 @@ class ContextChatbot:
         chat = init_chat_model(selected_model, llm_temperature)
 
         qa_chain_prompt = PromptTemplate(input_variables=["context", "question"], template=prompt_template)
-
-        # Using refine chain
 
         chain = ConversationalRetrievalChain.from_llm(
             llm=chat,
