@@ -16,18 +16,14 @@ PIPELINE_ID = os.getenv('PIPELINE_ID')
 DATASET = os.getenv('DATASET_PATH')+os.getenv('SERVICE_PUBLIC_FR_DATASET')
 
 # Target Index name
-index_name = "search-service-public-minilm-l6-v2"
+index_name = "<target-index-name>"
 
 # Create an Elasticsearch vector store with hosted model
 def init_es_vectorstore_with_hosted_model():
     es_vector_store = ElasticsearchStore(
         es_cloud_id=CLOUD_ID,
         es_user=CLOUD_USERNAME,
-        es_password=CLOUD_PASSWORD,
-        index_name=ES_VECTOR_INDEX,
-        query_field='text_field',
-        vector_query_field='vector_query_field.predicted_value',
-        strategy=ElasticsearchStore.ApproxRetrievalStrategy(query_model_id="sentence-transformers__all-minilm-l6-v2")
+        es_password=CLOUD_PASSWORD
     )
     return es_vector_store
 
@@ -82,10 +78,13 @@ def index_passages_into_es(dataset):
 
 
 if __name__ == '__main__':
-    # create index
-    # vector_store = init_es_vectorstore_with_hosted_model()
-    # create_index_with_vector_field(index_name, index_mapping)
-    # load data into es
+    # Init vector_store
+    vector_store = init_es_vectorstore_with_hosted_model()
+    
+    # Create target index for with vector mappings
+    create_index_with_vector_field(index_name, index_mapping)
+    
+    # load data into target vector index
     try:
         original_dataset = open(DATASET)
         index_passages_into_es(original_dataset)
