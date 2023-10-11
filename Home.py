@@ -17,10 +17,8 @@ st.image(
     'https://images.contentstack.io/v3/assets/bltefdd0b53724fa2ce/blt601c406b0b5af740/620577381692951393fdf8d6/elastic-logo-cluster.svg',
     width=75)
 
-st.header("Chat with your Elasticsearch data using OpenAI Large Language Models (LLMs)")
-st.write("""
-Démonstration de l'utilisation d'Elasticsearch pour l'enrichissement du contexte des LLM.\n
-""")
+st.header("Chat with your Elasticsearch data using Large Language Models (LLMs)")
+
 
 st.sidebar.header('Choose a demo')
 
@@ -32,20 +30,15 @@ with st.sidebar:
 
 st.markdown(
     """
-   Use Elasticsearch with large language models (LLMs) to create powerful, new applications for your customers and employees. 
-   Tailor generative AI experiences to your business using real-time, proprietary data. 
    Build cost-effective and secure AI apps that are accurate and relevant using Elastic’s vector database, out of the box semantic search, and transformer model flexibility. 
    The future is possible today with Elastic..
-    **👈 Select a demo from the sidebar** to see some examples
-    of what ESRE can do!
+    **👈 Select a demo from the sidebar** to see some examples of what ESRE can do!
     ### Want to learn more?
-    - A Powerful [Retrieval Augmented Generation with ESRE](https://ela.st/gen-ai-yaz)
     - Check out [Demystifying ChatGPT](https://www.elastic.co/blog/demystifying-chatgpt-methods-building-ai-search)
     - Jump into our [documentation](https://www.elastic.co/guide/index.html)
     - Ask a question in our [community
         forums](https://discuss.elastic.co)
     ### See more Interesting blog Posts on Generative AI
     - Transforming observability with [AI Assistant, OTel standardization, continuous profiling, and enhanced log analytics](https://www.elastic.co/blog/transforming-observability-ai-assistant-otel-standardization-continuous-profiling-log-analytics)
-    - Discover the [power of generative AI for government and public sector](https://www.elastic.co/blog/generative-ai-public-sector)
 """
 )
