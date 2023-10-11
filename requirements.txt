@@ -1,0 +1,15 @@
+streamlit~=1.26.0
+openai
+elasticsearch~=8.9.0
+tiktoken
+langchain~=0.0.285
+python-dotenv~=1.0.0
+google-cloud-aiplatform >= 1.31.0
+pypdf
+pypdf2~=3.0.1
+streamlit_chat
+unstructured
+requests~=2.31.0
+beautifulsoup4~=4.12.2
+tqdm~=4.66.1
+sentence-transformers
