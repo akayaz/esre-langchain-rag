@@ -22,14 +22,14 @@ from langchain.chat_models import AzureChatOpenAI
 load_dotenv()
 
 st.set_page_config(
-    page_title="Stellantis Assistant",
+    page_title="ESRE Assistant with Bedrock",
     page_icon=":car:"
 )
 st.image(
     #'https://images.contentstack.io/v3/assets/bltefdd0b53724fa2ce/blt601c406b0b5af740/620577381692951393fdf8d6/elastic-logo-cluster.svg',
     "/Users/yakadiri/Downloads/aws-elastic.png",
     width=250)
-st.title("Assistant Stellantis ESRE Demo")
+st.title("ESRE Demo using AWS Bedrock")
 st.sidebar.header('Configuration du Chatbot')
 with st.sidebar:
     st.subheader('Choix du LLM et des paramètres')
